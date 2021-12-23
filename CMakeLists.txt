@@ -9,7 +9,7 @@ if (USE_ZENITY)
   # zenity should be cross-platform itself
 
   set(private_platform_sources
-    ${CMAKE_CURRENT_LIST_DIR}/src/nfd_zenity.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/nfd_zenity.c
   )
 
 else()
@@ -24,16 +24,14 @@ else()
     set(private_platform_sources
       ${CMAKE_CURRENT_LIST_DIR}/src/nfd_win.cpp
     )
+  elseif(APPLE)
+    set(private_platform_sources
+      ${CMAKE_CURRENT_LIST_DIR}/src/nfd_cocoa.m
+    )
   elseif(UNIX)
-    if ($<C_COMPILER_ID:GNU>)
-      set(private_platform_sources
-        ${CMAKE_CURRENT_LIST_DIR}/src/nfd_gtk.cpp
-      )
-    elseif(APPLE)
-      set(private_platform_sources
-        ${CMAKE_CURRENT_LIST_DIR}/src/nfd_cocoa.m
-      )
-    endif()
+    set(private_platform_sources
+      ${CMAKE_CURRENT_LIST_DIR}/src/nfd_gtk.c
+    )
   endif()
 
 endif()
