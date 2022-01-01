@@ -41,7 +41,7 @@ void NFD_PathSet_Free( nfdpathset_t *pathset )
 
 void NFD_Path_Free( nfdchar_t *path )
 {
-    assert(path);
+    if (!path) return;
     NFDi_Free( path );
 }
 
