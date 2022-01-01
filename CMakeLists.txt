@@ -71,3 +71,14 @@ set_target_properties(nativefiledialog
   PROPERTIES
     LIBRARY_OUTPUT_NAME libnfd
 )
+
+
+# ignoring some windows warnings
+if(WIN32)
+target_compile_definitions(nativefiledialog
+    PRIVATE _CRT_SECURE_NO_WARNINGS=1
+)
+target_compile_definitions(nativefiledialog_static
+    PRIVATE _CRT_SECURE_NO_WARNINGS=1
+)
+endif()
